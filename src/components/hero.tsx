@@ -8,7 +8,7 @@ import AvatarCount from "./avatar-count";
 const Hero = async () => {
   const session = await auth();
   return (
-    <div className="flex h-full w-full flex-col items-center px-8 select-none md:flex-row md:px-4 xl:px-0">
+    <div className="flex h-full w-full flex-col items-center justify-center px-8 select-none md:px-4 xl:px-0">
       <div className="mx-auto max-w-4xl text-center">
         <div className="flex flex-col items-center gap-6">
           <AvatarCount />
