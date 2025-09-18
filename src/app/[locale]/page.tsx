@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 
 import { AuthControls } from "@/components/auth-controls";
 import { Icons } from "@/components/icons";
-import { StripeButton } from "@/components/stripe-button";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 
@@ -35,7 +34,13 @@ const HomePage = async () => {
         </p>
         <div className="mt-2 flex gap-4">
           {session ? (
-            <StripeButton />
+            <Link
+              href="https://github.com/square-story/inspecto"
+              target="_blank"
+              className={buttonVariants({ size: "lg" })}
+            >
+              {t("getStartedButton")}
+            </Link>
           ) : (
             <Link
               href="https://github.com/greencommit/waitlist/blob/main/README.md#getting-started"
@@ -57,7 +62,7 @@ const HomePage = async () => {
       <footer className="text-muted-foreground absolute bottom-3 w-full text-center text-sm">
         © {new Date().getFullYear()}{" "}
         <Link
-          href="https://michalskolak.pl"
+          href="https://sadik.is-a.dev"
           className={buttonVariants({ variant: "link", className: "!p-0" })}
         >
           Michał Skolak

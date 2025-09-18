@@ -18,9 +18,9 @@ export const LangSwitcher = ({ className }: LangSwitcherProps) => {
         buttonVariants({ variant: "outline", size: "icon" }),
         className,
       )}
-      href={locale === "en" ? "/pl" : "/en"}
+      href={locale === "en" ? "/ml" : "/en"}
     >
-      {locale === "en" ? "PL" : "EN"}
+      {locale === "en" ? "ML" : "EN"}
     </Link>
   );
 };
