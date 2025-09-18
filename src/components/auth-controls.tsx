@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
+import { IconBrandGithub } from "@tabler/icons-react";
 import { Session } from "next-auth";
-import { signIn, signOut } from "next-auth/react";
-import { useTranslations } from "next-intl";
+import { signIn } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 
@@ -12,32 +11,17 @@ type AuthControlsProps = {
 };
 
 export const AuthControls = ({ session }: AuthControlsProps) => {
-  const t = useTranslations("home");
-
   if (!session)
     return (
       <Button
-        className="cursor-pointer"
-        onClick={async () => await signIn("github")}
+        onClick={async () => signIn("github")}
+        size="lg"
+        className="bg-emerald-600 px-8 py-3 text-lg text-white hover:bg-emerald-700"
       >
-        {t("signIn")}
+        <IconBrandGithub className="mr-2 h-5 w-5" />
+        Join with GitHub
       </Button>
     );
 
-  const { user } = session;
-
-  return (
-    <>
-      <Image
-        className="overflow-hidden rounded-full"
-        src={`${user?.image}`}
-        alt={`${user?.name}`}
-        width={32}
-        height={32}
-      />
-      <Button className="cursor-pointer" onClick={async () => await signOut()}>
-        {t("signOut")}
-      </Button>
-    </>
-  );
+  return null;
 };

@@ -3,6 +3,7 @@
     "signIn": "Sign in",
     "signOut": "Sign out",
     "subtitle": "waitlist page for GreenCommit, a platform that connects open-source maintainers and contributors. The page allows users to sign up for early access, view community activity, and validate interest before launch.",
-    "getStartedButton": "Get started"
+    "getStartedButton": "Get started",
+    "starOnGithub": "Star on Github"
   }
 }

@@ -1,10 +1,9 @@
 "use client";
 
+import { IconBrightness } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { ComponentProps } from "react";
 
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type ThemeSwitcherProps = {
@@ -12,17 +11,15 @@ type ThemeSwitcherProps = {
 };
 
 export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
-  const { theme, setTheme } = useTheme();
-
+  const { setTheme } = useTheme();
+  const handleThemeChange = () => {
+    setTheme((prev: string) => (prev === "dark" ? "light" : "dark"));
+  };
   return (
-    <Button
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className={cn("cursor-pointer", className)}
-      size="icon"
+    <IconBrightness
       aria-label="Toggle theme"
-    >
-      <Icons.sun className="dark:hidden" />
-      <Icons.moon className="hidden dark:block" />
-    </Button>
+      onClick={handleThemeChange}
+      className={cn("h-5 w-5", className)}
+    />
   );
 };
