@@ -57,7 +57,7 @@ const HomePage = async () => {
       <footer className="text-muted-foreground absolute bottom-3 w-full text-center text-sm">
         © {new Date().getFullYear()}{" "}
         <Link
-          href="https://michalskolak.pl"
+          href="https://sadik.is-a.dev"
           className={buttonVariants({ variant: "link", className: "!p-0" })}
         >
           Michał Skolak
