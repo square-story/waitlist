@@ -1,58 +1,88 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import {
   AvatarGroup,
   AvatarGroupTooltip,
 } from "@/components/animate-ui/components/animate/avatar-group";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const AVATARS = [
-  {
-    src: "https://pbs.twimg.com/profile_images/1948770261848756224/oPwqXMD6_400x400.jpg",
-    fallback: "SK",
-    tooltip: "Skyleen",
-  },
-  {
-    src: "https://pbs.twimg.com/profile_images/1593304942210478080/TUYae5z7_400x400.jpg",
-    fallback: "CN",
-    tooltip: "Shadcn",
-  },
-  {
-    src: "https://pbs.twimg.com/profile_images/1677042510839857154/Kq4tpySA_400x400.jpg",
-    fallback: "AW",
-    tooltip: "Adam Wathan",
-  },
-  {
-    src: "https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_400x400.jpg",
-    fallback: "GR",
-    tooltip: "Guillermo Rauch",
-  },
-  {
-    src: "https://pbs.twimg.com/profile_images/1534700564810018816/anAuSfkp_400x400.jpg",
-    fallback: "JH",
-    tooltip: "Jhey",
-  },
-  {
-    src: "https://pbs.twimg.com/profile_images/1927474594102784000/Al0g-I6o_400x400.jpg",
-    fallback: "DH",
-    tooltip: "David Haz",
-  },
-];
+// User type definition based on our schema
+type User = {
+  id: string;
+  name: string | null;
+  email: string | null;
+  image: string | null;
+  isActive: boolean;
+};
 
 const AvatarCount = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("/api/members");
+        if (!response.ok) {
+          throw new Error("Failed to fetch members");
+        }
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        console.error("Error fetching members:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  // Generate initials from name
+  const getInitials = (name: string | null): string => {
+    if (!name) return "?";
+    return name
+      .split(" ")
+      .map((part) => part.charAt(0))
+      .join("")
+      .toUpperCase()
+      .substring(0, 2);
+  };
+
   return (
     <div className="mx-auto flex w-fit flex-col items-center gap-4 sm:flex-row">
       <span className="inline-flex items-center -space-x-4">
         <AvatarGroup>
-          {AVATARS.map((avatar, index) => (
-            <Avatar key={index} className="border-background size-12 border-3">
-              <AvatarImage src={avatar.src} />
-              <AvatarFallback>{avatar.fallback}</AvatarFallback>
-              <AvatarGroupTooltip>{avatar.tooltip}</AvatarGroupTooltip>
-            </Avatar>
-          ))}
+          {isLoading
+            ? // Show loading placeholders
+              Array(3)
+                .fill(0)
+                .map((_, index) => (
+                  <Avatar
+                    key={`loading-${index}`}
+                    className="border-background size-12 border-3"
+                  >
+                    <AvatarFallback>...</AvatarFallback>
+                  </Avatar>
+                ))
+            : users.map((user) => (
+                <Avatar
+                  key={user.id}
+                  className="border-background size-12 border-3"
+                >
+                  <AvatarImage src={user.image || undefined} />
+                  <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                  <AvatarGroupTooltip>
+                    {user.name || "Anonymous User"}
+                  </AvatarGroupTooltip>
+                </Avatar>
+              ))}
         </AvatarGroup>
       </span>
       <div className="text-muted-foreground text-sm">
-        Joined {AVATARS.length}+ others.
+        Joined {users.length > 0 ? `${users.length}+` : "0"} others.
       </div>
     </div>
   );
