@@ -1,12 +1,10 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { eq } from "drizzle-orm";
 import NextAuth from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import GitHubProvider from "next-auth/providers/github";
 
 import { env } from "@/env.mjs";
-import { db, users } from "@/lib/schema";
-import { stripeServer } from "@/lib/stripe";
+import { db } from "@/lib/schema";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db) as Adapter,
@@ -30,18 +28,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   events: {
     createUser: async ({ user }) => {
       if (!user.email || !user.name) return;
-
-      await stripeServer.customers
-        .create({
-          email: user.email,
-          name: user.name,
-        })
-        .then(async (customer) =>
-          db
-            .update(users)
-            .set({ stripeCustomerId: customer.id })
-            .where(eq(users.id, user.id!)),
-        );
     },
   },
 });

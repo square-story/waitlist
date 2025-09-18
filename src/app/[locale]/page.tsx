@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 
 import { AuthControls } from "@/components/auth-controls";
 import { Icons } from "@/components/icons";
-import { StripeButton } from "@/components/stripe-button";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 
@@ -35,7 +34,13 @@ const HomePage = async () => {
         </p>
         <div className="mt-2 flex gap-4">
           {session ? (
-            <StripeButton />
+            <Link
+              href="https://github.com/square-story/inspecto"
+              target="_blank"
+              className={buttonVariants({ size: "lg" })}
+            >
+              {t("getStartedButton")}
+            </Link>
           ) : (
             <Link
               href="https://github.com/greencommit/waitlist/blob/main/README.md#getting-started"
