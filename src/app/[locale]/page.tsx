@@ -16,7 +16,7 @@ const HomePage = async () => {
       <header className="w-full border-b">
         <div className="container flex h-16 items-center justify-between">
           <Link href="#" className="font-mono text-lg font-bold">
-            next-starter
+            waitlist
           </Link>
           <div className="flex items-center gap-2">
             <AuthControls session={session} />
@@ -28,7 +28,7 @@ const HomePage = async () => {
           <span className="bg-gradient-to-r from-rose-700 to-pink-600 bg-clip-text text-transparent">
             Next.js
           </span>{" "}
-          starter template
+          waitlist
         </h1>
         <p className="text-muted-foreground max-w-2xl md:text-lg">
           {t("subtitle")}
@@ -38,7 +38,7 @@ const HomePage = async () => {
             <StripeButton />
           ) : (
             <Link
-              href="https://github.com/Skolaczk/next-starter/blob/main/README.md#getting-started"
+              href="https://github.com/greencommit/waitlist/blob/main/README.md#getting-started"
               target="_blank"
               className={buttonVariants({ size: "lg" })}
             >
@@ -46,7 +46,7 @@ const HomePage = async () => {
             </Link>
           )}
           <Link
-            href="https://github.com/Skolaczk/next-starter"
+            href="https://github.com/greencommit/waitlist"
             target="_blank"
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
