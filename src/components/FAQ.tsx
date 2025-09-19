@@ -24,7 +24,7 @@ export const FAQ = ({
       <Accordion
         type={multiple ? "multiple" : "single"}
         collapsible={collapsible}
-        className="w-full max-w-[600px]"
+        className="w-full max-w-[100%] md:max-w-3xl"
       >
         {FAQuestions.map((item, index) => (
           <AccordionItem key={index} value={`item-${index + 1}`}>
