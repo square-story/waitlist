@@ -52,7 +52,7 @@ const AvatarCount = () => {
   };
 
   return (
-    <div className="mx-auto flex w-fit flex-col items-center gap-4 sm:flex-row">
+    <div className="mx-auto flex w-fit flex-col items-center gap-2 sm:flex-row md:gap-4">
       <span className="inline-flex items-center -space-x-4">
         <AvatarGroup>
           {isLoading
@@ -62,7 +62,7 @@ const AvatarCount = () => {
                 .map((_, index) => (
                   <Avatar
                     key={`loading-${index}`}
-                    className="border-background size-12 border-3"
+                    className="border-background size-7 border-2 md:size-12"
                   >
                     <AvatarFallback>...</AvatarFallback>
                   </Avatar>
@@ -70,7 +70,7 @@ const AvatarCount = () => {
             : users.map((user) => (
                 <Avatar
                   key={user.id}
-                  className="border-background size-12 border-3"
+                  className="border-background size-7 border-2 md:size-12"
                 >
                   <AvatarImage src={user.image || undefined} />
                   <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
