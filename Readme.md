@@ -1,4 +1,4 @@
-# GreenCommit Waitlist Page
+# GreenCommit
 
 <a href="https://greencommit-kappa.vercel.app/en">
 <img src="/public/opengraph-image.png" alt="thumbnail">
