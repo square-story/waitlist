@@ -8,9 +8,47 @@ import { ThemeSwitcher } from "./theme-switcher";
 const Navbar = () => {
   return (
     <div className="flex h-14 w-full items-center justify-between px-4">
-      <Link href={"/"} className="font-semibold select-none">
-        Green Commit
-      </Link>
+      <div className="logo-div flex items-center justify-center">
+        <svg
+          version="1.0"
+          xmlns="http://www.w3.org/2000/svg"
+          className="logo"
+          width="40pt"
+          height="40pt"
+          viewBox="0 0 1474.000000 830.000000"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <metadata>Created by greencommit-2025</metadata>
+          <g
+            transform="translate(0.000000,830.000000) scale(0.100000,-0.100000)"
+            stroke="none"
+          >
+            <path
+              d="M5445 7294 c-691 -44 -1013 -150 -1276 -421 -240 -246 -355 -574
+          -392 -1118 -16 -239 -16 -3934 0 -4165 66 -951 431 -1379 1273 -1494 280 -39
+          411 -41 2320 -41 1903 0 2050 3 2315 40 406 57 674 173 880 380 241 243 361
+          578 398 1120 16 236 16 3931 0 4165 -32 460 -126 777 -300 1010 -57 75 -172
+          187 -248 239 -214 149 -448 221 -868 268 -125 14 -378 16 -2097 18 -1075 1
+          -1977 0 -2005 -1z m4155 -289 c52 -8 120 -21 150 -30 183 -55 361 -229 434
+          -426 58 -156 56 -76 56 -2384 0 -1407 -3 -2149 -10 -2205 -26 -211 -80 -330
+          -205 -456 -70 -70 -97 -89 -186 -132 -193 -94 31 -86 -2394 -90 -1470 -2
+          -2173 0 -2246 8 -218 22 -347 77 -475 205 -68 68 -89 97 -133 185 -93 190 -85
+          -39 -89 2405 -2 1514 0 2188 8 2255 24 213 73 323 200 451 123 124 259 193
+          432 218 36 5 996 9 2213 10 1834 1 2164 -1 2245 -14z"
+            />
+            <path
+              d="M6958 5016 l-3 -874 -75 45 c-302 181 -676 283 -1092 300 l-158 6 0
+          -416 0 -417 48 0 c75 0 258 -19 347 -36 421 -81 706 -301 845 -654 50 -127 89
+          -341 90 -487 l0 -83 420 0 420 0 0 79 c0 201 52 424 138 596 141 282 406 468
+          780 545 50 11 162 25 247 32 l155 12 0 413 0 413 -87 0 c-408 0 -856 -119
+          -1168 -310 l-65 -40 0 875 0 875 -420 0 -420 0 -2 -874z"
+            />
+          </g>
+        </svg>
+        <span className="text-xl font-bold">
+          green<span className="text-green-600">c</span>ommit
+        </span>
+      </div>
       <div className="flex h-full items-center gap-2 md:gap-4">
         <ThemeSwitcher className="cursor-pointer" />
         <LangSwitcher />
