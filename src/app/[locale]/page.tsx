@@ -1,10 +1,11 @@
+import { FAQ } from "@/components/FAQ";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 
 const HomePage = async () => {
   return (
     <>
-      <header className="relative flex h-screen w-full flex-col items-center select-none">
+      <header className="relative flex h-full w-full flex-col items-center select-none">
         <div className="absolute flex h-screen w-full flex-col items-center">
           <div className="relative h-full w-full max-w-5xl">
             <div
@@ -19,6 +20,7 @@ const HomePage = async () => {
         <div className="z-10 flex h-full w-full max-w-5xl flex-col">
           <Navbar />
           <Hero />
+          <FAQ />
         </div>
       </header>
     </>
