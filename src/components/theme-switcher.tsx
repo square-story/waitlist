@@ -2,7 +2,7 @@
 
 import { IconBrightness } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,21 @@ type ThemeSwitcherProps = {
 
 export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
   const { setTheme } = useTheme();
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+
+    if (theme && theme == "light") {
+      return;
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }, []);
+
   const handleThemeChange = () => {
     setTheme((prev: string) => (prev === "dark" ? "light" : "dark"));
   };
