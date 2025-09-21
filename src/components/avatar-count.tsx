@@ -17,19 +17,26 @@ type User = {
   isActive: boolean;
 };
 
+type HeroMembersResponse = {
+  members: User[];
+  totalCount: number;
+};
+
 const AvatarCount = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/members");
+        const response = await fetch("/api/hero-members");
         if (!response.ok) {
           throw new Error("Failed to fetch members");
         }
-        const data = await response.json();
-        setUsers(data);
+        const data: HeroMembersResponse = await response.json();
+        setUsers(data.members);
+        setTotalCount(data.totalCount);
       } catch (error) {
         console.error("Error fetching members:", error);
       } finally {
@@ -56,8 +63,7 @@ const AvatarCount = () => {
       <span className="inline-flex items-center -space-x-4">
         <AvatarGroup>
           {isLoading
-            ? // Show loading placeholders
-              Array(3)
+            ? Array(3)
                 .fill(0)
                 .map((_, index) => (
                   <Avatar
@@ -67,7 +73,7 @@ const AvatarCount = () => {
                     <AvatarFallback>...</AvatarFallback>
                   </Avatar>
                 ))
-            : users.map((user) => (
+            : users.map((user, index) => (
                 <Avatar
                   key={user.id}
                   className="border-background size-7 border-2 md:size-12"
@@ -82,7 +88,7 @@ const AvatarCount = () => {
         </AvatarGroup>
       </span>
       <div className="text-muted-foreground text-sm">
-        Joined {users.length > 0 ? `${users.length}+` : "0"} others.
+        Joined {totalCount > 0 ? `${totalCount}+` : "0"} others.
       </div>
     </div>
   );
